@@ -35,7 +35,7 @@ Play with example code in here: http://jussir.net/#/edit/jsonCssExample
       # nested definitions can also be define in one string
       'body pre': blackBox
 
-    jsonCss.addStyles styleId, cssDefinitions
+    jsonCss.addStyles(styleId, cssDefinitions)
 
 ↓
 
