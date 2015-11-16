@@ -1,0 +1,14 @@
+{
+  "name": "jsonCss",
+  "version": "0.0.1",
+  "description": "Use JSON syntax to build CSS styles",
+  "main": "src/jsonCss.coffee",
+  "jspm": {
+    "main": "src/jsonCss.coffee!"
+  },
+  "scripts": {
+    "build-dev": "coffee -c -o ./dist src/jsonCss.coffee",
+    "minify": "uglifyjs ./dist/jsonCss.js --compress --mangle -o ./dist/jsonCss.min.js --source-map ./dist/jsonCss.min.js.map",
+    "build": "npm run build-dev && npm run minify"
+  }
+}
