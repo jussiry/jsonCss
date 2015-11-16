@@ -37,7 +37,7 @@ Play with example code in here: http://jussir.net/#/edit/jsonCssExample
 
     jsonCss.addStyles styleId, cssDefinitions
 
-            ↓
+↓
 
     .jsonCssExample {
       border-radius: 10px;
