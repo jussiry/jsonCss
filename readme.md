@@ -87,7 +87,7 @@ With JSPM, it can be installed directly: jspm install github:jussiry/jsonCss
 
 ## jsonHtml
 
-Combine with [jsonHtml](http://jussir.net/#/edit/jsonHtml) to create compact UI modules with HTML, JS, and controller all in same file. See an [example here](http://jussir.net/#/edit/jsonHtmlStyleExample).
+Combine with [jsonHtml](https://github.com/jussiry/jsonHtml) to create compact UI modules with HTML, JS, and controller all in same file. See an [example here](https://github.com/jussiry/jsonHtmlStyleExample).
 
 
 ## CCSS
