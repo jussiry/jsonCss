@@ -5,9 +5,11 @@
   globalRef = typeof window !== "undefined" && window !== null ? window : global;
 
   if ((typeof module !== "undefined" && module !== null) && module !== globalRef.module) {
-    module.exports = jsonCss = {};
+    module.exports = module.exports || {};
+    module.exports.__esModule = true;
+    jsonCss = module.exports;
   } else if (this === globalRef) {
-    this.jsonCss = jsonCss = {};
+    this.jsonHtml = jsonCss = {};
   } else {
     jsonCss = this;
   }
@@ -40,10 +42,14 @@
   };
 
   jsonCss.removeStyles = function(el_id) {
+    var styleEl;
     if (!el_id) {
       throw Error("Missing id for for styles to be removed");
     }
-    return document.head.removeChild(document.getElementById(el_id + '_styles'));
+    styleEl = document.getElementById(el_id + '_styles');
+    if (styleEl) {
+      return document.head.removeChild(styleEl);
+    }
   };
 
   non_pixel_props = ['font-weight', 'opacity', 'z-index', 'zoom'];

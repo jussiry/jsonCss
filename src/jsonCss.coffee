@@ -3,9 +3,11 @@
 # Export in module.exports, this, or global.jsonHtml
 globalRef = window ? global
 if (module? and module isnt globalRef.module)
-  module.exports = jsonCss = {}
+  module.exports = module.exports or {}
+  module.exports.__esModule = true # exports subvars, not whole module
+  jsonCss = module.exports
 else if @ is globalRef
-  @jsonCss = jsonCss = {}
+  @jsonHtml = jsonCss = {}
 else
   jsonCss = @
 
@@ -35,7 +37,8 @@ jsonCss.addStyles = (el_id, rules)->
 jsonCss.removeStyles = (el_id)->
   unless el_id
     throw Error "Missing id for for styles to be removed"
-  document.head.removeChild document.getElementById(el_id + '_styles')
+  styleEl = document.getElementById(el_id + '_styles')
+  document.head.removeChild styleEl if styleEl
 
 # PARSER
 
