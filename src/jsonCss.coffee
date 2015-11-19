@@ -21,7 +21,7 @@ jsonCss.addStyles = (el_id, rules)->
   el_id = el_id + '_styles'
   rules = rules() if typeof rules is 'function' # then rules.call(jsonCss.helpers) else rules
   cssStr = if typeof rules is 'object' \
-           then jsonCss.compile rules
+           then jsonCss.transpile rules
            else rules
   styleEl = document.getElementById el_id
   unless styleEl?
@@ -66,11 +66,11 @@ create_property_string = (key, value)->
   else
     "  #{key}: #{value};\n"
 
-jsonCss.compile = (rulesObj) -> # , styleSheet
+jsonCss.transpile = (rulesObj) -> # , styleSheet
   jsonCss.stack ?= []
   if jsonCss.stack.indexOf(rulesObj) isnt -1 or jsonCss.stack.length is 100
     console.warn 'jsonCss.stack', jsonCss.stack
-    throw "Endless stack in jsonCss.compile!"
+    throw "Endless stack in jsonCss.transpile!"
   jsonCss.stack.push rulesObj
 
   cssStr = ''
@@ -97,6 +97,6 @@ jsonCss.compile = (rulesObj) -> # , styleSheet
     if declarations.length
       newCSS = "#{selector} {\n#{declarations}}\n"
       cssStr += newCSS
-    cssStr += jsonCss.compile nested #, styleSheet
+    cssStr += jsonCss.transpile nested #, styleSheet
   jsonCss.stack.pop()
   cssStr

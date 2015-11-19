@@ -27,7 +27,7 @@
     if (typeof rules === 'function') {
       rules = rules();
     }
-    cssStr = typeof rules === 'object' ? jsonCss.compile(rules) : rules;
+    cssStr = typeof rules === 'object' ? jsonCss.transpile(rules) : rules;
     styleEl = document.getElementById(el_id);
     if (styleEl == null) {
       styleEl = document.createElement('style');
@@ -91,14 +91,14 @@
     }
   };
 
-  jsonCss.compile = function(rulesObj) {
+  jsonCss.transpile = function(rulesObj) {
     var childRules, childSelector, children, combineStr, cssStr, declarations, i, j, key, len, len1, nested, newCSS, parentSelector, ref, ref1, selector, value;
     if (jsonCss.stack == null) {
       jsonCss.stack = [];
     }
     if (jsonCss.stack.indexOf(rulesObj) !== -1 || jsonCss.stack.length === 100) {
       console.warn('jsonCss.stack', jsonCss.stack);
-      throw "Endless stack in jsonCss.compile!";
+      throw "Endless stack in jsonCss.transpile!";
     }
     jsonCss.stack.push(rulesObj);
     cssStr = '';
@@ -139,7 +139,7 @@
         newCSS = selector + " {\n" + declarations + "}\n";
         cssStr += newCSS;
       }
-      cssStr += jsonCss.compile(nested);
+      cssStr += jsonCss.transpile(nested);
     }
     jsonCss.stack.pop();
     return cssStr;
