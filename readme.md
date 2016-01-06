@@ -80,9 +80,9 @@ body pre {
 
 Just import dist/jsonCss.min.js
 
-Library uses CommonJS syntax for export, or window.jsonCss when local 'module' variable not defined.
+Library uses CommonJS syntax for export, or `window.jsonCss` when local 'module' variable not defined.
 
-With JSPM, it can be installed directly: jspm install github:jussiry/jsonCss
+With JSPM, it can be installed directly: `jspm install github:jussiry/jsonCss`
 
 
 ## jsonHtml
